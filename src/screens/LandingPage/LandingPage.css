@@ -1,0 +1,43 @@
+.main {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.intro-title {
+  text-align: center;
+  width: 100%;
+}
+
+.intro-body {
+  display: inline-block;
+  padding-right: 5px;
+  font-size: 25px;
+}
+
+.intro-body-special {
+  display: inline-block;
+  font-size: 20px;
+  color: rgb(135, 139, 141);
+}
+
+.button-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.main-button {
+  width: 200px;
+  height: 55px;
+}
+
+@media only screen and (max-width: 600px) {
+  .intro-title {
+    font-size: 60px;
+  }
+  .main-button {
+    width: 150px;
+    height: 55px;
+  }
+}
