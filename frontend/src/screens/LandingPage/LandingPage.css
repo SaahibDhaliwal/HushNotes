@@ -1,0 +1,57 @@
+.main {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-title {
+  text-align: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+.intro-title h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #d4d4d8;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: #888;
+}
+
+.tagline-highlight {
+  color: #3b82f6;
+  font-weight: 500;
+  margin: 0 0.25rem;
+}
+
+.button-container {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.main-button {
+  width: 140px;
+  height: 44px;
+}
+
+@media only screen and (max-width: 600px) {
+  .intro-title h1 {
+    font-size: 2rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-button {
+    width: 180px;
+  }
+}

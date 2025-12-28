@@ -1,0 +1,32 @@
+.main-bg {
+  min-height: 90vh;
+  padding: 2rem 0;
+}
+
+.page {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+hr {
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .page {
+    padding: 0 1rem;
+  }
+}

@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# HushNotes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A secure note-taking application built with the MERN stack (MongoDB, Express, React, Node.js).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- User authentication (register/login)
+- Create, view, and delete notes
+- Markdown support for note content
+- Search notes by title
+- Secure JWT-based authentication
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+HushNotes/
+├── backend/          # Express.js API server
+│   ├── config/       # Database configuration
+│   ├── controllers/  # Route controllers
+│   ├── middleware/   # Auth middleware
+│   ├── models/       # Mongoose models
+│   ├── routes/       # API routes
+│   └── server.js     # Entry point
+├── frontend/         # React application
+│   ├── public/
+│   └── src/
+│       ├── actions/      # Redux actions
+│       ├── components/   # Reusable components
+│       ├── reducers/     # Redux reducers
+│       ├── screens/      # Page components
+│       └── store.js      # Redux store
+└── README.md
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB Atlas account (free tier works)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup
 
-### `npm run build`
+### 1. Clone the repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone <repository-url>
+cd HushNotes
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Set up MongoDB Atlas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Go to [mongodb.com/atlas](https://www.mongodb.com/atlas) and create a free account
+2. Create a new cluster (free M0 tier)
+3. Click "Database Access" and create a database user with password
+4. Click "Network Access" and add your IP (or `0.0.0.0/0` for development)
+5. Click "Connect" > "Connect your application" > Copy the connection string
 
-### `npm run eject`
+### 3. Configure environment variables
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Create a `.env` file in the `backend` folder:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd backend
+cp .env.example .env
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Edit `backend/.env` with your values:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+PORT=5000
+MONGO_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@cluster0.xxxxx.mongodb.net/hushnotes?retryWrites=true&w=majority
+JWT_SECRET=your_secret_key_here
+```
 
-## Learn More
+### 4. Install dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# Install backend dependencies
+cd backend
+npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Install frontend dependencies
+cd ../frontend
+npm install
+```
 
-### Code Splitting
+## Running the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+You need to run both the backend and frontend servers:
 
-### Analyzing the Bundle Size
+### Terminal 1 - Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+cd backend
+npm run dev
+```
 
-### Making a Progressive Web App
+The API server will start on http://localhost:5000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Terminal 2 - Frontend
 
-### Advanced Configuration
+```bash
+cd frontend
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The React app will start on http://localhost:3000
 
-### Deployment
+## API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Authentication
+- `POST /api/users` - Register a new user
+- `POST /api/users/login` - Login user
 
-### `npm run build` fails to minify
+### Notes (requires authentication)
+- `GET /api/notes` - Get all notes for logged-in user
+- `POST /api/notes/create` - Create a new note
+- `PUT /api/notes/:id` - Update a note
+- `DELETE /api/notes/:id` - Delete a note
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Tech Stack
+
+**Frontend:**
+- React 18
+- Redux with Redux Thunk
+- React Router v6
+- React Bootstrap
+- Axios
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- JWT for authentication
+- bcryptjs for password hashing
